@@ -1,36 +1,56 @@
 \name{plotSegments}
 \alias{plotSegments}
 \title{Image segments}
-\description{This function splits gray matrix and smoothed grays in desired number of image segments for developing visual control in tree-ring detection.}
-\usage{plotSegments(gray, pixtypes, last.yr, origin = 0, over = NA, 
-    segs = 1, ratio = NULL, tit = "")}
+\description{One or several plots of consecutive segments of gray matrix and
+smoothed grays.}
+\usage{plotSegments(image, ratio = NULL, marker = NULL, col.marker = "red", 
+    tit = TRUE, plot = TRUE, ...)}
 \arguments{
-  \item{gray}{Matrix. Gray matrix from imageTogray}
-  \item{pixtypes}{Data frame. Included and excluded borders from pixelTypes}
-  \item{last.yr}{Numeric. Year of formation of newest ring in image section.}
-  \item{origin}{Numeric. Constant on smoothed gray to focus border detection. Default origin = 0 focus detection arround zero.}
-  \item{over}{Numeric. Overriding constant on smoothed grays below which automatically detected borders are avoided; over = NA avoids overriding process.}
-  \item{segs}{Numeric. Number of segments to split gray image in segmented plot.}
-  \item{ratio}{Vector. Two values givind aspect ratio of plot (height, and width). Values corresponding to aspect ratio of display prevent distortion in segmented plots. See also dev.new().}
-  \item{tit}{Title of plot. Default tit = '' avoids title in plot.
-,...##<< further arguments to modify plot; see function par().}
+  \item{image}{character or matrix. Either path of an image
+section or an array representing a gray matrix.}
+  \item{ratio}{NULL or vector with two values representing the
+aspect of the plots (height, and width). If
+NULL the default aspect in \code{par()} is
+used.}
+  \item{marker}{NULL or a number from 1 to 10 as explained
+in \code{\link{colNarrow}}. If numeric then
+three kind of markers are indicated: those
+narrow rings with averages major than
+\code{marker}, chronological markers
+(decades, centuries, and millenia), and the
+column numbers in gray matrix of the ring
+borders. The markers are highlighted with
+the color in \code{col.marker}. If NULL no
+markers are highlighted.}
+  \item{col.marker}{color of the markers.}
+  \item{tit}{logical or character. A title for the plots. If
+TRUE the main title is the image name. For more
+than 1 segment the main title ends with the
+segment number.}
+  \item{plot}{logical. If TRUE the image segments are
+plotted.}
+  \item{\dots}{arguments to be passed to \code{\link{dataSegments}}.}
 }
 
-\value{A number of image segments as indicated in segs.}
+\value{the image segments and a list such as that produced by
+\code{\link{dataSegments}}.}
 
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-image = system.file("P105_a.tif", package="measuRing")
-gray <- imageTogray(image = image,p.row = 1)
-smoothed <- graySmoothed(gray,ppi = 10^3)
-borders <- linearDetect(smoothed,origin = 0)
-pixtypes <- pixelTypes(smoothed,borders)
-plotSegments(gray,pixtypes,last.yr = 2012,segs = 3)
-## output prints three plots
-## Ring borders in segmented images should be visually controlled with ringDetect.        
- 
+## (not run) Read one image sample in folder of package measuRing:
+image1 <- system.file("P105_a.tif", package="measuRing")        
+## column numbers to be included/avoided:
+Toinc <- c(196,202,387,1564) 
+Toexc <- c(21,130,197,207,1444,1484)        
+##(not run) Plotting of five image segments:
+plots <- plotSegments(image1,rgb=c(0.5,0,0.5),last.yr=2011,
+    marker=8,segs=3,inclu = Toinc,exclu = Toexc)
+## plots <- plotSegments(rwidths,segs = 4,marker=8)
+## (not run) kill all the image segments:
+graphics.off()
+    
 }

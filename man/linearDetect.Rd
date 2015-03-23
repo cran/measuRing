@@ -2,23 +2,32 @@
 \alias{linearDetect}
 \title{Linear detection}
 \description{Function for developing linear detection of ring borders.}
-\usage{linearDetect(data2, origin = 0)}
+\usage{linearDetect(smoothed, origin = 0, darker = TRUE)}
 \arguments{
-  \item{data2}{Data frame. Smoothed grays from graySmoothed.}
-  \item{origin}{Numeric. Constant on smoothed gray to focus border detection. Default origin = 0 focus detection arround zero.}
+  \item{smoothed}{a data frame with smoothed grays such as that
+produced by \code{\link{graySmoothed}}.}
+  \item{origin}{numeric. an origin in smoothed gray to find the
+ring borders.}
+  \item{darker}{logical. If TRUE the algorithm uses the
+negative extremes on smoothed grays to detect the ring
+borders. If FALSE the possitive extremes are used.}
 }
 
-\value{Vector. Gray columns of ring borders. }
+\value{vector with column numbers in gray matrix of the detected
+ring borders (see \code{\link{grayDarker}}, and
+\code{\link{graySmoothed}}).}
 
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-       image = system.file("P105_a.tif", package="measuRing")
-       gray <- imageTogray(image = image,p.row = 1)
-       smoothed <- graySmoothed(gray,ppi = 10^3)
-       borders <- linearDetect(smoothed)
-## Ring borders should be visually controlled with ringDetect.        
+## (not run) Read one image section in package measuRing:
+image1 <- system.file("P105_a.tif", package="measuRing")    
+## (not run) smoothed gray:
+smoothed <- graySmoothed(image1)
+## linear detection:
+borders <- linearDetect(smoothed)
+str(borders)
 }

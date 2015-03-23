@@ -1,24 +1,38 @@
 \name{grayDarker}
 \alias{grayDarker}
-\title{Darker grays}
-\description{Identification of darker grays on smoothed gray.}
-\usage{grayDarker(data2, origin = 0)}
+\title{Gray extremes}
+\description{This function can detect the extremes of the smoothed gray.}
+\usage{grayDarker(smoothed, origin = 0, darker = TRUE)}
 \arguments{
-  \item{data2}{Data frame. Smoothed grays from graySmoothed.}
-  \item{origin}{Numeric. Constant on smoothed gray to focus border detection. Default origin = 0 focus detection of borders arround zero.}
+  \item{smoothed}{a data frame with the smoothed gray such
+as that produced by
+\code{\link{graySmoothed}}.}
+  \item{origin}{an origin to find the extremes.}
+  \item{darker}{logical. If TRUE the function finds the
+negative extremes. If FALSE the possitive
+extremes are detected.}
 }
 
-\value{Vector. Gray columns of darker grays from automatic detection on gray matrix. }
+\value{vector with the columns in gray matrix corresponding to
+the extremes (see \code{\link{graySmoothed}} and
+\code{\link{linearDetect}}).}
 
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-image = system.file("P105_a.tif", package="measuRing")
-gray <- imageTogray(image = image,p.row = 1)
-smoothed <- graySmoothed(gray,ppi = 10^3)
-darker <- grayDarker(smoothed)
-length(darker)   
+## (not run) Read one image section:
+image1 <- system.file("P105_a.png", package="measuRing")    
+## (not run) gray matrix from RGB in image:
+gray <- imageTogray(image = image1,ppi = 1000)
+## (not run) smoothed gray:
+smoothed <- graySmoothed(gray)
+## (not run) column numbers of possitive and negative
+## extremes:
+posit <- grayDarker(smoothed,darker=FALSE)
+nega <- grayDarker(smoothed,darker=TRUE)
+str(nega)
+
 }

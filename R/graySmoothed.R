@@ -1,31 +1,68 @@
 graySmoothed <- structure(
-    function#Smoothed grays
-    ###Averaging, detrending and smoothing of columns in gray matrix. 
+    function#Smoothed gray
+    ###Averaging, detrending, and smoothing of the columns in a gray matrix. 
     (
-        gray, ##<< Matrix. Gray matrix. See imageTogray
-        ppi ##<<Numeric. Image resolution in points per inch.        
+        image,##<<character or matrix. Either path of an image section
+              ##or an array representing a gray matrix.
+        all = FALSE, ##<< logical. If TRUE the column numbers and
+                    ##moving averages are added to the output.
+        ...##<< arguments to be passed to \code{\link{imageTogray}}.
     )
     {
-        average.ingray <- function(gray){
-        e <- apply(gray, 1, function(x) exp(mean(log(x))))
-        rowN <- as.numeric(rownames(data.frame(gray)))
-        data2 <- data.frame(N_pixel=rowN,V_pixel=e)
-        return(data2)}
-        data2 <- average.ingray(gray)
+
+        f.tit <- function(image){
+            p <- '.tif'
+            if(any(grepl('.png',image)))p <- '.png'
+            bn <- basename(image)
+            gsub(p,'',bn)}
+        
+        gray <- image
+        if(is.character(gray))
+            gray <- imageTogray(gray,...)
+        names. <- f.tit(attributes(gray)[['image']])
+        averageIngray <- function(gray){
+        e <- apply(gray, 2, function(x) exp(mean(log(x))))
+        smoothd <- data.frame(V_pixel=e)
+        return(smoothd)}
+        smoothd <- averageIngray(gray)
         lagsel <- lagIngray(gray)
-        scale <- 25.4/ppi ## (mm)
-        data2$m.av <- rollapply(data2[,'V_pixel'],lagsel,mean,fill='extend') #CRAN::zoo
-        data2$cent <-data2[,'V_pixel']-data2$m.av
-        data2$smooth <- smooth(na.omit(data2$cent),twiceit=FALSE)
-        data2$distance <- with(data2,scale*N_pixel)
-        return(data2)
-        ###Data frame with six columns: pixel number (N_pixel), gray value (V_pixel), moving average (m.av), centered gray (cent), smoothed gray (smooth), and distances (mm) from left border of image section (distance).
+        hanning <- function (x, n = 7) { ## from dplR!
+            j <- 0:(n - 1)
+            win <- 1 - cos(2 * pi/(n - 1) * j)
+            win <- win/sum(win)
+            as.vector(filter(x, win))}
+        hann0 <- hanning(smoothd[,'V_pixel'],lagsel)
+        names(hann0) <- rownames(smoothd)
+        hann <- hann0[!is.na(hann0)]
+        hanm <- hann[1]
+        hanM <- hann[length(hann[!is.na(hann)])]
+        hann0[as.numeric(names(hann0))<as.numeric(names(hanm))] <- hanm 
+        hann0[as.numeric(names(hann0))>as.numeric(names(hanM))] <- hanM 
+        smoothd[,'m.av'] <- hann0
+        smoothd[,names.] <-smoothd[,'V_pixel']-smoothd[,'m.av']
+        if(all==FALSE){smoothd <- data.frame(smoothd[,names.])
+                   names(smoothd) <- names.}
+
+          attrg <- attributes(gray)[-1L]         
+         attributes(smoothd) <- c(attributes(smoothd),attrg)
+
+        
+        return(smoothd)
+            ###data frame with the smoothed grays. If argument all is
+            ###TRUE the output is extended the with the columns in
+            ###gray matrix, and the moving averages.
     }
 ,
     ex=function(){
-        image = system.file("P105_a.tif", package="measuRing")
-        gray <- imageTogray(image = image,p.row = 1)
-        smoothed <- graySmoothed(gray,ppi = 10^3)
-        summary(smoothed)
+        ## (not run) Read one image section in package measuRing:
+        image1 <- system.file("P105_a.png", package="measuRing")    
+        ## (not run) the smoothed gray:
+        smoothed <- graySmoothed(image1,ppi=1000)
+        ## (not run) Plot of the smoothed gray:        
+        Smooth <- ts(smoothed)
+        main. <- 'Smoothed gray'
+        plot(Smooth,xlab = 'Column', main=main.,
+             ylab = 'Smoothed gray',col = 'gray')
+
     }
 )

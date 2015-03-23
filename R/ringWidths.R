@@ -1,33 +1,69 @@
 ringWidths <- structure(
     function#Ring widths 
-    ### This function computes tree-ring widths and formation years. 
+    ### This function can compute the ring widths from the ring
+    ### borders detected on an image section.
     (
-        pixtypes, ##<< Data frame. Included and excluded borders from pixelTypes
-        last.yr##<<Numeric. Year of formation of newest ring in image section.       
+        image,##<<character or matrix. Either path of an image section
+        ##or an array representing a gray matrix.
+        last.yr = NULL,##<<year of formation of the newest ring. If
+                       ##NULL then the rings are numbered from one
+                       ##(right) to the number of detected rings
+                       ##(left).
+        ...##<< arguments to be passed to \code{\link{ringBorders}}.
     )
     {
-        finald <- pixtypes[pixtypes[,"pixtype"]%in%c('automatic','included'),]
-        if(nrow(finald)==0)return(NA)
+
+        f.rown <- function(x)as.numeric((rownames(x)))
+
+        f.tit <- function(image){
+            p <- '.tif'
+            if(any(grepl('.png',image)))p <- '.png'
+            bn <- basename(image)
+            gsub(p,'',bn)}
+        
+        pixtypes <- ringBorders(image,...)        
+        attb <- attributes(pixtypes)
+        ppi <- attb[['ppi']]
+        names. <- f.tit(attb[['image']])
+        scale <- 25.4/ppi ## (mm)
+        pixtypes[,'distance'] <- f.rown(pixtypes)*scale
+        finald <- pixtypes[pixtypes[,"borders"]%in%TRUE,]
+        
+        f.label <- function(finald,last.yr){
+           finald[,'item'] <- c(1:nrow(finald))
+           finald[,'growth'] <- with(finald,(max(distance) - distance))
+           if(!is.null(last.yr))year1 <- last.yr + 1
+           else{year1 <- nrow(finald)}
+           finald[,'year'] <- with(finald,year1-item)
+           finald[,'delta'] <- with(finald,c(rev(diff(rev(growth))),0))
+           finald <- finald[1:(nrow(finald)-1),c('year','delta')]}
+        
+        if(nrow(finald)==0){
+        trwd <- data.frame(year=vector(),delta=vector())}
         else{
-            f.label <- function(x){
-                x[,'item'] <- c(1:nrow(x))
-                x[,'growth'] <- with(x,(max(distance) - distance))
-                year1 <- last.yr+ 1
-                x[,'year'] <- with(x,year1-item)
-                x[,'delta'] <- with(x,c(rev(diff(rev(growth))),0))
-                x <- x[1:(nrow(x)-1),c('year','delta')]}
-            return(f.label(finald))}
-            ###Data frame with two columns: formation year (year) and rind-widths (delta).
+         trwd <- f.label(finald,last.yr)
+         last.yr <- max(trwd[,'year'])}
+        names(trwd) <- c('year',names.)
+        attributes(trwd) <- c(attributes(trwd),## attcol,
+                              rbord=attb,last.yr=last.yr)
+        return(trwd)
+        ###data frame with the ring widths.
+
+
     }
 ,
     ex=function(){
-        image = system.file("P105_a.tif", package="measuRing")
-        gray <- imageTogray(image = image,p.row = 1)
-        smoothed <- graySmoothed(gray,ppi = 10^3)
-        borders <- linearDetect(smoothed,origin = 0)
-        pixtypes <- pixelTypes(smoothed,borders)
-        rwidths <- ringWidths(pixtypes,last.yr = 2012)
-        ## Ring witdhs should be visually controlled with
-         # ringDetect (see also example in ringSelect).        
+        ## (not run) Read one image section:
+        image1 <- system.file("P105_a.tif", package="measuRing")       
+        ## (not run) columns in gray matrix to be included/excluded:
+        Toinc <- c(196,202,387,1564) 
+        Toexc <- c(21,130,197,207,1444,1484)
+        ## (not run) tree-ring widths
+        rwidths <- ringWidths(image1,inclu = Toinc,exclu = Toexc,last.yr=NULL)
+        str(rwidths)
+        ##plot of computed tree-ring widths:
+        maint <- 'Hello ring widths!'
+        plot(rwidths,type='l',col = 'red',main = maint,
+             xlab = 'Year',ylab = 'Width (mm)')    
     }
 )

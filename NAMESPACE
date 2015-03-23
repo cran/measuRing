@@ -1,14 +1,6 @@
+importFrom(png, readPNG)
 importFrom(tiff, readTIFF)
-importFrom(zoo, rollapply)
 importFrom(pastecs, turnpoints)
-exportPattern("^[[:alpha:]]+")
-export(ringDetect)
-export(ringSelect)
-export(imageTogray)
-export(lagIngray)
-export(graySmoothed)
-export(grayDarker)
-export(linearDetect)
-export(pixelTypes)
-export(ringWidths)
-export(plotSegments)
+
+## Export regular function names
+export(ringWidths,ringDetect,multiDetect,linearDetect,grayDarker,dataSegments,ringSelect,imageTogray,ringBorders,plotSegments,colNarrow,lagIngray,graySmoothed)

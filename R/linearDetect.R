@@ -1,38 +1,66 @@
 linearDetect <- structure(
     function#  Linear detection
 ### Function for developing linear detection of ring borders.
-    (
-        data2,##<<Data frame. Smoothed grays from graySmoothed.
-        origin = 0 ##<<Numeric. Constant on smoothed gray to focus border detection. Default origin = 0 focus detection arround zero.
+## details<< This function assumes that negative extremes on smoothed
+## grays (darker grays) correspond to late wood and that positive
+## extremes on smoothed grays correspond to early wood; therefore, the
+## intervals between late/early wood are used to detect the ring
+## borders. Detection is centered on a constant controlled by the
+## argument origin. Ring borders are detected within consecutive pairs
+## of negative/positive extremes: those smoothed grays closest to
+## origin in the itervals are accounted as ring borders.
 
+    (
+        smoothed,##<< a data frame with smoothed grays such as that
+        ##produced by \code{\link{graySmoothed}}.
+        origin = 0,##<<numeric. an origin in smoothed gray to find the
+                   ##ring borders.
+        darker = TRUE 	##<<logical. If TRUE the algorithm uses the
+        ##negative extremes on smoothed grays to detect the ring
+        ##borders. If FALSE the possitive extremes are used.
     )
     {
-        turneg <- grayDarker(data2,origin)
-        ini <- data2[turneg,]
-        avelum <- data2[,c('distance','cent')]
-        f.rown <- function(x)as.numeric(as.character(rownames(x)))
-        difit <- c(f.rown(ini)[1],diff(f.rown(ini)))
-        lsa <- list()
-        for(i in 1:length(difit))lsa[[i]] <- rep(i,difit[i])
-        inflec <- unlist(lsa)
-        avelumi <- avelum[1:length(inflec),]
-        avelumi[,'inflav'] <- inflec
-        avelumi[,'difs'] <- c(diff(avelumi[,'cent']),NA)
-        avelumii <- na.omit(avelumi[avelumi[,'difs']<0,])
-        avelumii[,'abs.'] <- abs(avelumii[,'difs'])
-        f.mini <- function(x)x[which.min(abs(x-origin))]
-        infl <- tapply(avelumii[,'cent'],avelumii[,'inflav'],
-                       function(x)f.mini(x))
-        borders <- f.rown(avelum[avelum[,'cent']%in%infl,])
-        return(borders)
-###Vector. Gray columns of ring borders. 
+        f.rown <- function(x)as.numeric(rownames(x))
+
+        f.tit <- function(image){
+            p <- '.tif'
+            if(any(grepl('.png',image)))p <- '.png'
+            bn <- basename(image)
+            gsub(p,'',bn)}
+
+        names. <- f.tit(attributes(smoothed)[['image']])
+        names.. <- paste(names.,'.',sep='')
+        range. <- range(smoothed)
+        if(darker){turneg <- grayDarker(smoothed,origin)}
+        else{turneg <- grayDarker(smoothed,origin,darker=F)}
+        smoothed[,names..] <- smoothed[,names.] - origin
+        smoothed[,'cutZ'] <-
+            abs(c(diff(ifelse(smoothed[,names..]<0,0,1)),0))*f.rown(smoothed)
+        difcutZ <- diff(c(0,smoothed[,'cutZ'][smoothed[,'cutZ']!=0]))
+        fracutZ <- list()
+        for(i in 1:length(difcutZ))fracutZ[[i]] <- rep(i,difcutZ[i])
+        codeZ <- unlist(fracutZ)
+        smoothZ_data <- data.frame(smoothed[1:length(codeZ),],codeZ=codeZ)
+
+        smoothZ_list <- split(smoothZ_data,smoothZ_data[,'codeZ'])
+        det2ext <- unique(smoothZ_data[turneg,c('codeZ')])
+        selaut <- smoothZ_list[as.character(det2ext)]
+        newauto <- c(do.call(rbind,lapply(selaut,function(x)f.rown(x[1,]))))
+        attri <- list(origin=origin,darker=darker)
+        attributes(newauto) <- c(attributes(newauto),attri)
+        return(newauto)
+	###vector with column numbers in gray matrix of the detected
+	###ring borders (see \code{\link{grayDarker}}, and
+	###\code{\link{graySmoothed}}).
     }
 ,
     ex=function(){
-        image = system.file("P105_a.tif", package="measuRing")
-        gray <- imageTogray(image = image,p.row = 1)
-        smoothed <- graySmoothed(gray,ppi = 10^3)
+        ## (not run) Read one image section in package measuRing:
+        image1 <- system.file("P105_a.tif", package="measuRing")    
+        ## (not run) smoothed gray:
+        smoothed <- graySmoothed(image1)
+        ## linear detection:
         borders <- linearDetect(smoothed)
- ## Ring borders should be visually controlled with ringDetect.        
+        str(borders)
     }
 )

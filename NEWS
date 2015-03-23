@@ -1,0 +1,86 @@
+New changes in measuRing V0.3:
+
+1. The previous dependence: "zoo" is not required in this version.
+
+2. A new dependence was added to the package: "png".
+
+3. Three new functions have been implemented in this version:
+  "colNarrows", "dataSegments", and "multiDetect" (see package
+  documentation).
+
+4. Titles and definitions of available functions were changed (see
+  package documentation). Titles were shortened.
+
+5. With the exception of "imageTogray", most of the available
+   functions pass arguments to other required functions (see the
+   implementation of ellipsis: ... in the functions).
+
+6. With exception of function "imageTogray", required argument "image"
+   not only can be a character but an array such as a gray matrix. In
+   the function "imageTogray" such an argument can only be a character
+   with the path of an image section.
+
+7. Most of the available functions can be evaluated with the required
+   argument "image" except the funtions "grayDarker" and
+   "linearDetect" which require of precomputed smoothed grays from
+   "graySmoothed".
+
+8. Changes in function "grayDarker": name of the argument "data2" was
+  changed by "smoothed"; a new logical, default argument "darker =
+  TRUE" was implemented.
+
+9. Changes in function "graySmoothed": the moving average in this
+   function was replaced with a Hanning filter. Argument "gray" was
+   changed by argument "image"; "ppi" is passed to "imageTogray"; a
+   new logical, default argument "all = TRUE" was added.
+
+10. Changes in function "imageTogray": besides the mentioned changes
+   in the argument "image"; the logical, default "ppi = NULL" is
+   passed to this function.
+
+11. Changes in function "lagIngray": besides the changes with the
+    argument "image"; a new logical, default argument "acf = FALSE" is
+    implemented.
+
+12. Changes in function "linearDetect": the name of the arguement
+   "data2" was changed by "smoothed"; a new logical, default argument
+   "darker = TRUE" is implemented.
+
+13. Changes in function "plotSegments": besides the changes with the
+    argument "image", argument "pixtypes" was avoided; "last.yr" and
+    "origin" are passed to other functions (see "dataSegments" and
+    "ringWidths"); three new arguments "marker = NULL", "col.marker =
+    'red'", and "plot = TRUE" have been added; "marker" is implemented
+    to add markers to the plots: narrow rings, decades, centuries, and
+    millenia; the column numbers in gray matrix are now markers as
+    well and are visible only when "marker" is integer.
+
+14. Changes in function "pixelTypes": the name of such a function
+    changed to "ringBorders"; argument "data2" was changed by argument
+    "image"; arguments "boders" and "over" were avoided; the
+    overriding of over-detected ring borders is now automatically
+    developed by "linearDetect", so this argument is not necessary
+    anymore; two new logical, default arguments were added: "auto.det
+    = TRUE" and "darker = TRUE".
+
+15. Changes in function "ringDetect": besides the changes in "image",
+    other arguments are passed to required functions (see
+    "plotSegments", "dataSegments", "ringWidths", and "ringBorders");
+    "method = 'linear'" was changed to "auto.det = TRUE" and is passed
+    to "ringBorders". Objects with outputs of this function can be
+    updated with function update(). Output does not contain the gray
+    matrix.
+
+16. Changes in function "ringSelect": the character, argument "type"
+   was changed by the logical, default argument "any.col = TRUE".
+
+
+
+
+
+
+
+
+
+
+

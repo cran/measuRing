@@ -1,25 +1,52 @@
 grayDarker <- structure(
-    function#Darker grays
-    ###Identification of darker grays on smoothed gray.
+    function#Gray extremes
+    ###This function can detect the extremes of the smoothed gray.
     (
-        data2, ##<<Data frame. Smoothed grays from graySmoothed.
-        origin = 0 ##<<Numeric. Constant on smoothed gray to focus border detection. Default origin = 0 focus detection of borders arround zero.      
+        smoothed,	##<<a data frame with the smoothed gray such
+                        ##as that produced by
+                        ##\code{\link{graySmoothed}}.
+        origin = 0, 	##<<an origin to find the extremes.
+        darker = TRUE 	##<<logical. If TRUE the function finds the
+                        ##negative extremes. If FALSE the possitive
+                        ##extremes are detected.
     )
     {
-        turnp <- turnpoints(data2[,'smooth'])[['tppos']] #CRAN::pastecs
-        avelum <- data2[,c('distance','cent')]
-        inidet0 <- avelum[turnp,]
-        inidet <- na.omit(inidet0[inidet0[,'cent']<0,])
-        f.rown <- function(x)as.numeric(rownames(x))
-        return(f.rown(inidet))
-        ###Vector. Gray columns of darker grays from automatic detection on gray matrix. 
+
+        f.rown <- function(x)as.numeric((rownames(x)))
+
+        f.tit <- function(image){
+            p <- '.tif'
+            if(any(grepl('.png',image)))p <- '.png'
+            bn <- basename(image)
+            gsub(p,'',bn)}
+
+        names. <- f.tit(attributes(smoothed)[['image']])
+        smoothed[,'smooth'] <- smooth(na.omit(smoothed[,names.]),
+        twiceit=FALSE)
+        turnp <- turnpoints(smoothed[,'smooth'])[['tppos']] #CRAN::pastecs
+        inidet0 <- smoothed[turnp,]
+        inidet <- na.omit(inidet0[inidet0[,names.]>origin,])
+        if(darker)
+        inidet <- na.omit(inidet0[inidet0[,names.]<origin,])        
+        inidet <- f.rown(inidet)
+        return(inidet)
+            ###vector with the columns in gray matrix corresponding to
+            ###the extremes (see \code{\link{graySmoothed}} and
+            ###\code{\link{linearDetect}}).
     }
 ,
     ex=function(){
-        image = system.file("P105_a.tif", package="measuRing")
-        gray <- imageTogray(image = image,p.row = 1)
-        smoothed <- graySmoothed(gray,ppi = 10^3)
-        darker <- grayDarker(smoothed)
-        length(darker)   
-    }
+        ## (not run) Read one image section:
+        image1 <- system.file("P105_a.png", package="measuRing")    
+        ## (not run) gray matrix from RGB in image:
+        gray <- imageTogray(image = image1,ppi = 1000)
+        ## (not run) smoothed gray:
+        smoothed <- graySmoothed(gray)
+        ## (not run) column numbers of possitive and negative
+        ## extremes:
+        posit <- grayDarker(smoothed,darker=FALSE)
+        nega <- grayDarker(smoothed,darker=TRUE)
+        str(nega)
+
+   }
 )

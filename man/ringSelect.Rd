@@ -1,55 +1,53 @@
 \name{ringSelect}
 \alias{ringSelect}
-\title{Border selection}
-\description{Selection of pixels on central axis of plots of gray matrix in image segments to include or exclude ring borders. Grafical devices from either ringDetect or plotSegments should be active. Pixels are both: identified and stored  by left-clicking the mouse over central axis of gray image; pixel numbers of just added borders are highlighted on gray image. Graphical devices are sequentially closed by right-clicking the mouse. After a graphical device has been closed,  graphical device of the following segment is activated, and visual selection on such a new segment can be performed. Each of the processes: Inclusion and exclusion, must be performed independently.  }
-\usage{ringSelect(ringDetect, type)}
+\title{Visual selection}
+\description{This function is used to visually include/exclude ring borders;
+consequently, graphics devices from \code{\link{ringDetect}} or
+\code{\link{plotSegments}} should be active.}
+\usage{ringSelect(rdetect, any.col = TRUE)}
 \arguments{
-  \item{ringDetect}{Object. output from ringDetect.}
-  \item{type}{Character. set type = 'inc' to include pixels, or type = 'exc' to avoid pixels.}
+  \item{rdetect}{a list containing data frames of ring widths and
+ring borders such as that produced by
+\code{\link{ringDetect}}.}
+  \item{any.col}{logical. If FALSE only those column numbers
+in gray matrix previouly identified as ring
+borders can be selected.}
 }
+\details{Columns in gray matrix are either identified and stored
+by left-clicking the mouse over the central axis of gray image;
+pixel numbers of just added ring borders are highlighted on such
+a gray raster. The raphics devices are sequentially closed by
+right-clicking the mouse. After a graphics device has been
+closed, the graphics device of the following segment is
+activated, and visual selection on such a new segment can be
+performed. Closing the graphics devices with other procedures
+will stop the selection of ring borders.}
+\value{vector with column numbers in gray matrix of the
+identified ring borders.}
 
-\value{Vector with pixel numbers or irng borders to be included or excluded from analysis.}
-
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-## Output from ring.detect will be stored in object count1 (see example in ringDetect).
-count1 <- ringDetect(
-    image = system.file("P105_a.tif", package="measuRing"),
-    ppi = 10^3,
-    last.yr = 2012,
-    segs = 2,
-    method = 'linear',
-    inclu = NA,
-    exclu = NA,
-    tit = 'measuRing example')
-## output produces two figures for including or excluding ring borders.
-
-## ## uncomment and run:        
-##  inc <- ringSelect(count1,'inc') #choose pixels on image segments to include.
-##  ## vector inc is used to evaluate ringDetect again:
-##  count2 <- ringDetect(
-##      image = system.file("P105_a.tif", package="measuRing"),
-##      ppi = 10^3,
-##      last.yr = 2012,
-##      segs = 2,
-##      method = 'linear',
-##      inclu = inc, ## Argument inclu contains now values in object inc
-##      exclu = NA,
-##      tit = 'measuRing example')
-##  summary(count2$pixelTypes) #included pixels were added to pixelTypes data.
-##  exc <- ringSelect(count2,'exc') #choose pixels on image segments to exclude.
-##  ## Both vectors: inc and exc are used to evaluate ringDetect again:
-##  count3 <- ringDetect(
-##      image = system.file("P105_a.tif", package="measuRing"),
-##      ppi = 10^3,
-##      last.yr = 2012,
-##      segs = 2,
-##      method = 'linear',
-##      inclu = inc, ## Argument inclu contains now values in object inc
-##      exclu = exc, ## Argument exclu contains now values in object exc
-##      tit = 'measuRing example')
+## Read one image in package folder:
+image1 <- system.file("P105_a.tif", package="measuRing")
+## (not run) Initial diagnostic:
+detect1 <- ringDetect(image1,segs=2,marker=7)
+##
+## (not run) Choose other columns in gray matrix (see ringSelect);
+## (not run) graphical devices from ringDetect should be active!
+## (not run) Including columns:
+##
+## (uncomment and run):
+## Toinc <- ringSelect(detect1)
+## detect1 <- update(detect1, inclu = Toinc)
+##
+## (not run)  ring borders to be excluded:
+## (uncomment and run):
+## Toexc <- ringSelect(detect1,any.col = FALSE)
+## detect1 <- update(detect1, exclu=Toexc)
+## (not run) kill previous plot:
+graphics.off()
 }

@@ -1,27 +1,37 @@
 \name{ringWidths}
 \alias{ringWidths}
 \title{Ring widths }
-\description{This function computes tree-ring widths and formation years. }
-\usage{ringWidths(pixtypes, last.yr)}
+\description{This function can compute the ring widths from the ring
+borders detected on an image section.}
+\usage{ringWidths(image, last.yr = NULL, ...)}
 \arguments{
-  \item{pixtypes}{Data frame. Included and excluded borders from pixelTypes}
-  \item{last.yr}{Numeric. Year of formation of newest ring in image section.}
+  \item{image}{character or matrix. Either path of an image section
+or an array representing a gray matrix.}
+  \item{last.yr}{year of formation of the newest ring. If
+NULL then the rings are numbered from one
+(right) to the number of detected rings
+(left).}
+  \item{\dots}{arguments to be passed to \code{\link{ringBorders}}.}
 }
 
-\value{Data frame with two columns: formation year (year) and rind-widths (delta).}
+\value{data frame with the ring widths.}
 
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-image = system.file("P105_a.tif", package="measuRing")
-gray <- imageTogray(image = image,p.row = 1)
-smoothed <- graySmoothed(gray,ppi = 10^3)
-borders <- linearDetect(smoothed,origin = 0)
-pixtypes <- pixelTypes(smoothed,borders)
-rwidths <- ringWidths(pixtypes,last.yr = 2012)
-## Ring witdhs should be visually controlled with
- # ringDetect (see also example in ringSelect).        
+## (not run) Read one image section:
+image1 <- system.file("P105_a.tif", package="measuRing")       
+## (not run) columns in gray matrix to be included/excluded:
+Toinc <- c(196,202,387,1564) 
+Toexc <- c(21,130,197,207,1444,1484)
+## (not run) tree-ring widths
+rwidths <- ringWidths(image1,inclu = Toinc,exclu = Toexc,last.yr=NULL)
+str(rwidths)
+##plot of computed tree-ring widths:
+maint <- 'Hello ring widths!'
+plot(rwidths,type='l',col = 'red',main = maint,
+     xlab = 'Year',ylab = 'Width (mm)')    
 }

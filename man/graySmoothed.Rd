@@ -1,23 +1,34 @@
 \name{graySmoothed}
 \alias{graySmoothed}
-\title{Smoothed grays}
-\description{Averaging, detrending and smoothing of columns in gray matrix. }
-\usage{graySmoothed(gray, ppi)}
+\title{Smoothed gray}
+\description{Averaging, detrending, and smoothing of the columns in a gray matrix. }
+\usage{graySmoothed(image, all = FALSE, ...)}
 \arguments{
-  \item{gray}{Matrix. Gray matrix. See imageTogray}
-  \item{ppi}{Numeric. Image resolution in points per inch.}
+  \item{image}{character or matrix. Either path of an image section
+or an array representing a gray matrix.}
+  \item{all}{logical. If TRUE the column numbers and
+moving averages are added to the output.}
+  \item{\dots}{arguments to be passed to \code{\link{imageTogray}}.}
 }
 
-\value{Data frame with six columns: pixel number (N_pixel), gray value (V_pixel), moving average (m.av), centered gray (cent), smoothed gray (smooth), and distances (mm) from left border of image section (distance).}
+\value{data frame with the smoothed grays. If argument all is
+TRUE the output is extended the with the columns in
+gray matrix, and the moving averages.}
 
-\author{Wilson Lara <wilarhen@gmail.com>, Carlos Sierra <csierra@bgc-jena.mpg.de>}
+\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
 
 
 
 \examples{
-image = system.file("P105_a.tif", package="measuRing")
-gray <- imageTogray(image = image,p.row = 1)
-smoothed <- graySmoothed(gray,ppi = 10^3)
-summary(smoothed)
+## (not run) Read one image section in package measuRing:
+image1 <- system.file("P105_a.png", package="measuRing")    
+## (not run) the smoothed gray:
+smoothed <- graySmoothed(image1,ppi=1000)
+## (not run) Plot of the smoothed gray:        
+Smooth <- ts(smoothed)
+main. <- 'Smoothed gray'
+plot(Smooth,xlab = 'Column', main=main.,
+     ylab = 'Smoothed gray',col = 'gray')
+
 }
