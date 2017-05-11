@@ -5,8 +5,8 @@ plotSegments <- structure(
     (
          image,##<<character or matrix. Either path of an image
                 ##section or an array representing a gray matrix.
-        ratio = NULL,##<<NULL or vector with two values representing the
-                     ##aspect of the plots (height, and width). If
+        ratio = NULL,##<<NULL or vector with two values representing
+                     ##the aspect of the plots (height, and width). If
                      ##NULL the default aspect in \code{par()} is
                      ##used.
         marker = NULL, 	##<<NULL or a number from 1 to 10 as explained
@@ -129,11 +129,16 @@ plotSegments <- structure(
               xrange[1]*par('cex'),yrange[1]*par('cex'),
               xrange[2]*par('cex'),yrange[2]*par('cex'),interpolate=FALSE)
 
-;            axis(1,col= mono.chr[3],cex.axis = 0.7,cex.main = 0.7)
-            if(rowt==0){
+            axis(1,col= mono.chr[3],cex.axis = 0.7,cex.main = 0.7)
+            ## if(rowt!=0){
                 with(pixtypes,
-            lines(xrange,rep(yrange[2]/2,2),lwd=1,lty=2,col=poly.chr[1]))}
-
+            lines(xrange,rep(yrange[2]/2,2),lwd=0.5,
+                  lty=1,col='honeydew2'))
+        ## }
+            ## if(rowt==0){
+            ##     with(pixtypes,
+            ## lines(xrange,rep(yrange[2]/2,2),lwd=1,lty=2,col=poly.chr[1]))}
+            
             f.labels2 <- function(included,marker){
                with(included,
                segments(rowinc,rep(ncol(gray)/2,nrow(included)),

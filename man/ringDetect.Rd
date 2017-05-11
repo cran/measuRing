@@ -16,7 +16,8 @@ Environments (IDE), they should be sure that such
 environments support multiple graphics devices. If argument
 \code{image} is a gray matrix, then other arguments passed
 to \code{\link{imageTogray}} will be ignored. }
-\value{borders such as these produced by
+\value{list of data frames with ring widths and ring
+borders such as these produced by
 \code{\link{ringWidths}}, and \code{\link{ringBorders}}).}
 
 \author{Wilson Lara, Carlos Sierra, Felipe Bravo}

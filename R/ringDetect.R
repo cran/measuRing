@@ -24,8 +24,9 @@ ringDetect <- structure(
         detect1 <- c(detect,call=sys.call())
         attributes(detect1) <- c(attributes(detect1),
           attributes(plots)[inat])
+        attributes(detect1)[['coln']] <- rownames(detect1[['ringWidths']])
         return(detect1)
-;       ### list of data frames with ring widths and ring
+       ### list of data frames with ring widths and ring
         ### borders such as these produced by
         ### \code{\link{ringWidths}}, and \code{\link{ringBorders}}).
     }

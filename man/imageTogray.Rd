@@ -2,9 +2,9 @@
 \alias{imageTogray}
 \title{Gray matrix}
 \description{This function can compute a gray matrix from the RGB in an
-image section.Such image section can be compressed in either
-portable network graphics format (png) or tagged image file
-format (tif).}
+image section. Such an image section can be compressed in
+either portable network graphics format (png) or tagged image
+file format (tif).    }
 \usage{imageTogray(image, ppi = NULL, rgb = c(0.3, 0.6, 0.1), p.row = 1)}
 \arguments{
   \item{image}{character. path of an image section.}
@@ -36,7 +36,7 @@ gray <- imageTogray(image1)
 attributes(gray)
 ## (not run) but, the ppi is not embedded in image2:
 ## - imageTogray will return an error:
-## uncoment and run
+## (uncoment and run):
 ## gray2 <- imageTogray(image2)
 ## attributes(gray2)
 ## - the ppi should be provided (i.e. ppi = 1200):

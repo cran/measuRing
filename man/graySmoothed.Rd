@@ -11,9 +11,9 @@ moving averages are added to the output.}
   \item{\dots}{arguments to be passed to \code{\link{imageTogray}}.}
 }
 
-\value{data frame with the smoothed grays. If argument all is
-TRUE the output is extended the with the columns in
-gray matrix, and the moving averages.}
+\value{data frame with the smoothed grays. If \code{all} is
+TRUE then the output is extended with the columns in
+gray matrix, and moving averages.}
 
 \author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 

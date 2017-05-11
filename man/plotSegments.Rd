@@ -8,8 +8,8 @@ smoothed grays.}
 \arguments{
   \item{image}{character or matrix. Either path of an image
 section or an array representing a gray matrix.}
-  \item{ratio}{NULL or vector with two values representing the
-aspect of the plots (height, and width). If
+  \item{ratio}{NULL or vector with two values representing
+the aspect of the plots (height, and width). If
 NULL the default aspect in \code{par()} is
 used.}
   \item{marker}{NULL or a number from 1 to 10 as explained

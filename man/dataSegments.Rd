@@ -12,8 +12,8 @@ representing a gray matrix.}
 }
 
 \value{a list with segmented sets of the gray matrix, the ring
-borders, and the ring widths (see \code{\link{ringWidths}},
-and \code{\link{plotSegments}}).}
+borders, and the ring widths (see
+\code{\link{plotSegments}}).}
 
 \author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 

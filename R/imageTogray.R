@@ -1,10 +1,9 @@
 imageTogray <- structure(
     function#Gray matrix
     ### This function can compute a gray matrix from the RGB in an
-    ### image section.Such image section can be compressed in either
-    ### portable network graphics format (png) or tagged image file
-    ### format (tif).
-    
+    ### image section. Such an image section can be compressed in
+    ### either portable network graphics format (png) or tagged image
+    ### file format (tif).    
     (
         image,##<<character. path of an image section.
         ppi = NULL, ##<< NULL or integer. If NULL the image resolution
@@ -65,7 +64,7 @@ imageTogray <- structure(
         attributes(gray)
         ## (not run) but, the ppi is not embedded in image2:
         ## - imageTogray will return an error:
-        ## uncoment and run
+        ## (uncoment and run):
         ## gray2 <- imageTogray(image2)
         ## attributes(gray2)
         ## - the ppi should be provided (i.e. ppi = 1200):

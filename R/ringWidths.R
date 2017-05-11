@@ -1,6 +1,6 @@
 ringWidths <- structure(
     function#Ring widths 
-    ### This function can compute the ring widths from the ring
+    ### This function can compute the ring widths (mm) from the ring
     ### borders detected on an image section.
     (
         image,##<<character or matrix. Either path of an image section

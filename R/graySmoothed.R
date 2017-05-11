@@ -48,9 +48,9 @@ graySmoothed <- structure(
 
         
         return(smoothd)
-            ###data frame with the smoothed grays. If argument all is
-            ###TRUE the output is extended the with the columns in
-            ###gray matrix, and the moving averages.
+            ###data frame with the smoothed grays. If \code{all} is
+            ###TRUE then the output is extended with the columns in
+            ###gray matrix, and moving averages.
     }
 ,
     ex=function(){

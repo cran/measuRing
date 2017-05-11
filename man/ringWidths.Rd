@@ -1,7 +1,7 @@
 \name{ringWidths}
 \alias{ringWidths}
 \title{Ring widths }
-\description{This function can compute the ring widths from the ring
+\description{This function can compute the ring widths (mm) from the ring
 borders detected on an image section.}
 \usage{ringWidths(image, last.yr = NULL, ...)}
 \arguments{

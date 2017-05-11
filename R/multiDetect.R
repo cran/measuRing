@@ -77,7 +77,7 @@ multiDetect <- structure(
             excGen <- ringSelect(autoGen,FALSE)
             autoGen <- update(autoGen,
                inclu = incGen,exclu = excGen,plot=FALSE)}
-
+        
         fnoplot <- function(PGen,...){
            autoGen <- do.call(ringDetect,list(PGen,...))}
 
@@ -156,23 +156,23 @@ multiDetect <- structure(
     }
 ,
     ex=function(){
-        ## (not run) Set working directory:
+        ## (not run) set a working directory:
         setwd(system.file(package="measuRing"))
-        ## (not run) List the tif images the folder:
+        ## (not run) list the tif images in such a folder:
         list.files(path=getwd(),pattern='.tif')
-
+        ##
         ## (not run) run multiDetect:
         ## -provide at least one argument of ringDetect
         tmp <- multiDetect(pattern = 'P105',last.yr=2012,plot = FALSE)
         ##
         ## (not run) Excluding/changing some column numbers in tmp:
         dd <- tmp$colNames
-        ddtest <- dd #to be compared with final outputs
+        ddtest <- dd # object to be compared with final outputs
         dd[dd$year%in%1999:2012,] <- NA
         tail(dd,20)
         tmp1 <- update(tmp,inclu=dd,auto.det=FALSE)
         dm <- tmp1$colNames
-        dmtest <- dm #to be compared with final outputs
+        dmtest <- dm #object to be compared with final outputs
         ##
         ## (not run)changing columns from tmp with visual control
         ## -choose five or six rings at the bark side and later

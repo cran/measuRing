@@ -2,5 +2,17 @@ importFrom(png, readPNG)
 importFrom(tiff, readTIFF)
 importFrom(pastecs, turnpoints)
 
+importFrom(dplR, spag.plot)
+importFrom(dplR, ccf.series.rwl)
+importFrom(dplR, corr.rwl.seg)
+
+importFrom("grDevices", "dev.cur", "dev.list", "dev.new", "dev.off",
+           "dev.set", "graphics.off", "gray")
+importFrom("graphics", "axis", "grconvertY", "identify", "lines",
+           "mtext", "par", "points", "rasterImage", "rect", "segments",
+           "strheight", "strwidth", "text", "title")
+importFrom("stats", "filter", "na.omit", "smooth", "ts", "update")
+
+
 ## Export regular function names
-export(ringWidths,ringDetect,multiDetect,linearDetect,grayDarker,dataSegments,ringSelect,imageTogray,ringBorders,plotSegments,colNarrow,lagIngray,graySmoothed)
+export(ringWidths,ringDetect,multiDetect,linearDetect,grayDarker,dataSegments,ringSelect,imageTogray,ringBorders,plotSegments,colNarrow,crossRings,reduceList,lagIngray,graySmoothed)
