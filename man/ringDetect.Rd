@@ -8,7 +8,7 @@ algorithm.}
 \usage{ringDetect(image, ...)}
 \arguments{
   \item{image}{character or matrix. Either path of an image section
-or an array ##representing a gray matrix.}
+or an array representing a gray matrix.}
   \item{\dots}{arguments to be passed to \code{\link{plotSegments}}.}
 }
 \details{If users run R from Interactive Development

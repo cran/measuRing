@@ -155,7 +155,8 @@ multiDetect <- structure(
         ###\code{\link{ringDetect}}, and \code{\link{plotSegments}}).
     }
 ,
-    ex=function(){
+  ex=function(){
+      wd <- getwd()
         ## (not run) set a working directory:
         setwd(system.file(package="measuRing"))
         ## (not run) list the tif images in such a folder:
@@ -163,7 +164,10 @@ multiDetect <- structure(
         ##
         ## (not run) run multiDetect:
         ## -provide at least one argument of ringDetect
-        tmp <- multiDetect(pattern = 'P105',last.yr=2012,plot = FALSE)
+      tmp <- multiDetect(pattern = 'P105',
+                         to = 2,
+                         last.yr = 2012,
+                         plot = FALSE)
         ##
         ## (not run) Excluding/changing some column numbers in tmp:
         dd <- tmp$colNames
@@ -186,6 +190,7 @@ multiDetect <- structure(
         ## compare initial and final columns in gray matrix
         tail(ddtest,15)
         tail(dmtest,15)
-        tail(dm3,15)
+      tail(dm3,15)
+      setwd(wd)
     }
 )

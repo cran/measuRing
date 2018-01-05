@@ -1,3 +1,19 @@
+Changes in measuRing V0.4.1
+
+1. Warnings and errors in the examples of three functions:
+multiDetect, crossRings, and reduceList were fixed (see examples in
+the package documentation). The errors were shown for both Debian and
+Fedora, and were from using setwd(system.file(package = 'measuRing'))
+in the pacakge code.
+
+2. Argumenst in "crossDate" function have been simplified (see package
+documentation).
+
+New changes in measuRing V0.4
+
+1. New function "crossDate" has been created to implement crossdating
+functions in dplR package.
+
 New changes in measuRing V0.3:
 
 1. The previous dependence: "zoo" is not required in this version.

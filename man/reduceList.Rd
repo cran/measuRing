@@ -20,21 +20,22 @@ reduced.}
 
 
 \examples{
-## Image path:
-setwd(system.file(package="measuRing"))
-## list of tif files
-path. <- list.files(path=getwd(),pattern='.tif')
-## two images from path.
-alltf <- gsub('.tif','',path.)[1:2]
-## Recursive processing (mapping) of both images with multidetect
-allim <- Map(function(x)multiDetect(x, auto.det = TRUE,
-                                    last.yr = -1,plot = FALSE,
-                                    segs = 7, rgb = c(0,0,1),
-                                    marker = 6),alltf)
-str(allim)
-## Reducing processed ring withs 
-wide <- reduceList(allim)
-tail(wide)
-
+    wd <- getwd()
+    ## Image path:
+    setwd(system.file(package="measuRing"))
+    ## list of tif files
+    path. <- list.files(path=getwd(),pattern='.tif')
+    ## two images from path.
+    alltf <- gsub('.tif','',path.)[1:2]
+    ## Recursive processing (mapping) of both images with multidetect
+    allim <- Map(function(x)multiDetect(x, auto.det = TRUE,
+                                        last.yr = -1,plot = FALSE,
+                                        segs = 7, rgb = c(0,0,1),
+                                        marker = 6),alltf)
+    str(allim)
+    ## Reducing processed ring withs 
+    wide <- reduceList(allim)
+    tail(wide)
+setwd(wd)
 
 }

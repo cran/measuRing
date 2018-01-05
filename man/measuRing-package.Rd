@@ -14,4 +14,9 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{measuRing}
 }
 \author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+
+
+
 \keyword{ package }
+
+

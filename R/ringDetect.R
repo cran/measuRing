@@ -12,7 +12,7 @@ ringDetect <- structure(
 
     (
         image,##<<character or matrix. Either path of an image section
-        ##or an array ##representing a gray matrix.
+              ##or an array representing a gray matrix.
         ...##<< arguments to be passed to \code{\link{plotSegments}}.
         
         )

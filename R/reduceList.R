@@ -28,6 +28,7 @@ reduceList <- structure(
     
     
 } , ex=function(){
+    wd <- getwd()
     ## Image path:
     setwd(system.file(package="measuRing"))
     ## list of tif files
@@ -43,6 +44,6 @@ reduceList <- structure(
     ## Reducing processed ring withs 
     wide <- reduceList(allim)
     tail(wide)
-
+setwd(wd)
 
 })

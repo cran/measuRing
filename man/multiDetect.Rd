@@ -42,35 +42,40 @@ rings (see \code{\link{ringBorders}},
 
 
 \examples{
-## (not run) set a working directory:
-setwd(system.file(package="measuRing"))
-## (not run) list the tif images in such a folder:
-list.files(path=getwd(),pattern='.tif')
-##
-## (not run) run multiDetect:
-## -provide at least one argument of ringDetect
-tmp <- multiDetect(pattern = 'P105',last.yr=2012,plot = FALSE)
-##
-## (not run) Excluding/changing some column numbers in tmp:
-dd <- tmp$colNames
-ddtest <- dd # object to be compared with final outputs
-dd[dd$year\%in\%1999:2012,] <- NA
-tail(dd,20)
-tmp1 <- update(tmp,inclu=dd,auto.det=FALSE)
-dm <- tmp1$colNames
-dmtest <- dm #object to be compared with final outputs
-##
-## (not run)changing columns from tmp with visual control
-## -choose five or six rings at the bark side and later
-## exclude any one of them:
-tmp2 <- update(tmp,plot=TRUE,to='_a',segs = 1,auto.det=FALSE)
-dm2 <- tmp2$colNames
-newm <- merge(dm,dm2,by='year',all.x=TRUE)
-dm[,'P105_a'] <- newm[,ncol(newm)]
-tmp3 <- update(tmp,inclu=dm,plot=FALSE,auto.det=FALSE)
-dm3 <- tmp3$colNames
-## compare initial and final columns in gray matrix
-tail(ddtest,15)
-tail(dmtest,15)
+wd <- getwd()
+  ## (not run) set a working directory:
+  setwd(system.file(package="measuRing"))
+  ## (not run) list the tif images in such a folder:
+  list.files(path=getwd(),pattern='.tif')
+  ##
+  ## (not run) run multiDetect:
+  ## -provide at least one argument of ringDetect
+tmp <- multiDetect(pattern = 'P105',
+                   to = 2,
+                   last.yr = 2012,
+                   plot = FALSE)
+  ##
+  ## (not run) Excluding/changing some column numbers in tmp:
+  dd <- tmp$colNames
+  ddtest <- dd # object to be compared with final outputs
+  dd[dd$year\%in\%1999:2012,] <- NA
+  tail(dd,20)
+  tmp1 <- update(tmp,inclu=dd,auto.det=FALSE)
+  dm <- tmp1$colNames
+  dmtest <- dm #object to be compared with final outputs
+  ##
+  ## (not run)changing columns from tmp with visual control
+  ## -choose five or six rings at the bark side and later
+  ## exclude any one of them:
+  tmp2 <- update(tmp,plot=TRUE,to='_a',segs = 1,auto.det=FALSE)
+  dm2 <- tmp2$colNames
+  newm <- merge(dm,dm2,by='year',all.x=TRUE)
+  dm[,'P105_a'] <- newm[,ncol(newm)]
+  tmp3 <- update(tmp,inclu=dm,plot=FALSE,auto.det=FALSE)
+  dm3 <- tmp3$colNames
+  ## compare initial and final columns in gray matrix
+  tail(ddtest,15)
+  tail(dmtest,15)
 tail(dm3,15)
+setwd(wd)
 }
