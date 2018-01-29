@@ -4,7 +4,7 @@ plotSegments <- structure(
 ###smoothed grays.
     (
          image,##<<character or matrix. Either path of an image
-                ##section or an array representing a gray matrix.
+               ##section or an array representing a gray matrix.
         ratio = NULL,##<<NULL or vector with two values representing
                      ##the aspect of the plots (height, and width). If
                      ##NULL the default aspect in \code{par()} is
@@ -20,16 +20,17 @@ plotSegments <- structure(
                         ##the color in \code{col.marker}. If NULL no
                         ##markers are highlighted.
         col.marker = 'red', ##<< color of the markers.
-        tit = TRUE, ##<<logical or character. A title for the plots. If
-                   ##TRUE the main title is the image name. For more
-                   ##than 1 segment the main title ends with the
-                   ##segment number.
+        tit = TRUE, ##<<logical or character. A title for the
+                    ##plots. If TRUE the main title is the image
+                    ##name. For more than 1 segment the main title
+                    ##ends with the segment number.
         plot = TRUE,##<<logical. If TRUE the image segments are
                     ##plotted.
-        ...##<< arguments to be passed to \code{\link{dataSegments}}.
+        ...##<< arguments to be passed to four functions:
+           ## \code{\link{dataSegments}}, \code{\link{ringWidths}},
+           ## \code{\link{ringBorders}}, and/or
+           ## \code{\link{imageTogray}}.
 
-
-        
     )
     {
 

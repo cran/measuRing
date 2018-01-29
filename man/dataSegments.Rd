@@ -8,7 +8,9 @@
   \item{image}{Either path of an image section or an array
 representing a gray matrix.}
   \item{segs}{number of image segments.}
-  \item{\dots}{arguments to be passed to \code{\link{ringWidths}}.}
+  \item{\dots}{arguments to be passed to three functions:
+\code{\link{ringWidths}}, \code{\link{ringBorders}},
+and/or \code{\link{imageTogray}}.}
 }
 
 \value{a list with segmented sets of the gray matrix, the ring

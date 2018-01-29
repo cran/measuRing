@@ -11,7 +11,9 @@ or an array representing a gray matrix.}
 NULL then the rings are numbered from one
 (right) to the number of detected rings
 (left).}
-  \item{\dots}{arguments to be passed to \code{\link{ringBorders}}.}
+  \item{\dots}{arguments to be passed to two functions:
+\code{\link{ringBorders}}, and/or
+\code{\link{imageTogray}}.}
 }
 
 \value{data frame with the ring widths.}

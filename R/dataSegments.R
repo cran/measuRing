@@ -6,7 +6,9 @@ dataSegments <- structure(
         image,##<<Either path of an image section or an array
               ##representing a gray matrix.
         segs = 1,##<<number of image segments.
-        ...##<< arguments to be passed to \code{\link{ringWidths}}.
+        ...##<< arguments to be passed to three functions:
+           ## \code{\link{ringWidths}}, \code{\link{ringBorders}},
+           ## and/or \code{\link{imageTogray}}.
 
      )
     {

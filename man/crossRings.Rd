@@ -30,23 +30,23 @@ sample.}
 
 
 \examples{
-wd <- getwd()
-## Image path:
-setwd(system.file(package="measuRing"))
-## list of tif files
-path. <- list.files(path=getwd(),pattern='.tif')
-## two images from path.
-alltf <- gsub('.tif','',path.)[2:4]
-## Recursive processing (mapping) of both images with multidetect
-allim <- Map(function(x)multiDetect(x, auto.det = TRUE,
-                                    last.yr = -1,plot = FALSE,
-                                    segs = 7, rgb = c(0,0,1),
-                                    marker = 6),alltf)
-## ccf plot
-crossRings(allim,
-           fun = 'ccf',
+## Paths to three image sections in the package:
+img <- system.file(c("P105_a.tif",
+                     "P105_b.tif",
+                     "P105_d.tif"),
+                   package="measuRing")
+
+## Recursive detection:
+mrings <- multiDetect(img,
+                      last.yr = 2013,
+                      auto.det = TRUE,
+                      plot = FALSE)
+
+## corr analysis
+crossRings(mrings,
+           fun = 'corr',
            seg.length = 10,
            bin.floor = 0,
-           lag.max = 2)
-setwd(wd)
+           lag.max = 2,
+           make.plot = FALSE)
 }

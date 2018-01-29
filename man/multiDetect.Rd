@@ -1,40 +1,23 @@
 \name{multiDetect}
 \alias{multiDetect}
-\title{Multiple detection}
-\description{This function provides tools to recursively detect the ring
-borders in multiple image sections.}
-\usage{multiDetect(pattern, is.png = FALSE, from = 1, to = "all", inclu.dat = NULL, 
-    ...)}
+\title{Recursive detection}
+\description{This function can recursively measure tree-ring widths in one or
+several image sections.}
+\usage{multiDetect(img.nm, ...)}
 \arguments{
-  \item{pattern}{character with a common pattern in the names of
-the image sections.}
-  \item{is.png}{logical. If FALSE the tif images in
-working directory are processed.}
-  \item{from}{character with a complementary pattern, or
-position number in folder, of the initial image to
-be processed.}
-  \item{to}{character with a complementary pattern, or
-position number in folder, of the final image to
-be processed. If this argument is 'all' then all
-the images matching the argument in pattern are
-processed.}
-  \item{inclu.dat}{a data frame such as that contained in
-the ouput of this same function with the
-column numbers to be updated.}
-  \item{\dots}{arguments to be passed to \code{\link{ringDetect}}
-(ppi, last.yr, rgb, p.row, auto.det, darker, origin,
-inclu, exclu, and plot), or to
-\code{\link{plotSegments}}(segs, marker, col.marker,
-ratio, and tit).}
+  \item{img.nm}{Character or matrix. Vector of paths to the image
+sections or list of gray matrices.}
+  \item{\dots}{Further arguments to be passed to \code{\link{ringDetect}}
+and \code{\link{ringSelect}}.}
 }
-\details{Users running R from IDEs and aiming to develop
-visual control on several image segments should be sure
-that such environments support multiple graphics devices
-(see \code{\link{ringDetect}}).}
-\value{list with three data frames: the tree-ring widths, the
-column numbers of the detected ring borders, and the narrow
-rings (see \code{\link{ringBorders}},
-\code{\link{ringDetect}}, and \code{\link{plotSegments}}).}
+\details{The function can implement most of
+the in-package routines for ring-border
+detection, see arguments in
+\code{\link{ringDetect}} and
+\code{\link{ringSelect}}. Objects of type
+\code{multiDetect} can be updated with new
+argumenst, see examples.}
+\value{list of \code{\link{ringDetect}} objects.}
 
 \author{Wilson Lara, Carlos Sierra, Felipe Bravo}
 
@@ -42,40 +25,24 @@ rings (see \code{\link{ringBorders}},
 
 
 \examples{
-wd <- getwd()
-  ## (not run) set a working directory:
-  setwd(system.file(package="measuRing"))
-  ## (not run) list the tif images in such a folder:
-  list.files(path=getwd(),pattern='.tif')
-  ##
-  ## (not run) run multiDetect:
-  ## -provide at least one argument of ringDetect
-tmp <- multiDetect(pattern = 'P105',
-                   to = 2,
-                   last.yr = 2012,
-                   plot = FALSE)
-  ##
-  ## (not run) Excluding/changing some column numbers in tmp:
-  dd <- tmp$colNames
-  ddtest <- dd # object to be compared with final outputs
-  dd[dd$year\%in\%1999:2012,] <- NA
-  tail(dd,20)
-  tmp1 <- update(tmp,inclu=dd,auto.det=FALSE)
-  dm <- tmp1$colNames
-  dmtest <- dm #object to be compared with final outputs
-  ##
-  ## (not run)changing columns from tmp with visual control
-  ## -choose five or six rings at the bark side and later
-  ## exclude any one of them:
-  tmp2 <- update(tmp,plot=TRUE,to='_a',segs = 1,auto.det=FALSE)
-  dm2 <- tmp2$colNames
-  newm <- merge(dm,dm2,by='year',all.x=TRUE)
-  dm[,'P105_a'] <- newm[,ncol(newm)]
-  tmp3 <- update(tmp,inclu=dm,plot=FALSE,auto.det=FALSE)
-  dm3 <- tmp3$colNames
-  ## compare initial and final columns in gray matrix
-  tail(ddtest,15)
-  tail(dmtest,15)
-tail(dm3,15)
-setwd(wd)
+## Paths to three image sections in the package:
+img <- system.file(c("P105_a.tif",
+                     "P105_b.tif",
+                     "P105_d.tif"),
+                   package="measuRing")
+
+## Recursive detection (arbitrary ring borders and formation years
+## are included):
+mrings <- multiDetect(img,
+                      inclu = list(c(1:40),c(1:30),c(1:41),c(1:32)),
+                      last.yr = list(2014, 2013, 2012, 2011),
+                      auto.det = c(FALSE,TRUE,FALSE,TRUE),
+                      plot = FALSE)
+str(mrings)
+
+## Updating the mrings object with new arguments: 
+mrings1 <- update(mrings,
+                  exclu = list(c(1:4),c(1:4),c(1:4),c(1:4)),
+                  last.yr = 2016)
+
 }

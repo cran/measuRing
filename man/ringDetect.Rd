@@ -1,21 +1,27 @@
 \name{ringDetect}
 \alias{ringDetect}
 \title{Single detection}
-\description{This function can find the tree-ring widths in an scanned image
-section by visually including/excluding ring borders, or
-automatically detecting the rings using a linear detection
-algorithm.}
+\description{This function can measure the tree-ring widths (mm) in an scanned
+image section (.tif or .png) by visually including/excluding ring
+borders, or automatically detecting the rings using a linear
+detection algorithm.}
 \usage{ringDetect(image, ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
-or an array representing a gray matrix.}
-  \item{\dots}{arguments to be passed to \code{\link{plotSegments}}.}
+  \item{image}{\code{character} or \code{matrix}. Either path of an
+image section or an array representing a gray matrix.}
+  \item{\dots}{arguments to be passed to five functions:
+\code{\link{plotSegments}}, \code{\link{dataSegments}},
+\code{\link{ringWidths}}, \code{\link{ringBorders}}, and/or
+\code{\link{imageTogray}}.}
 }
-\details{If users run R from Interactive Development
-Environments (IDE), they should be sure that such
-environments support multiple graphics devices. If argument
-\code{image} is a gray matrix, then other arguments passed
-to \code{\link{imageTogray}} will be ignored. }
+\details{If users run R from Interactive
+Development Environments (IDE) aiming to
+segment the image section, they should be
+sure that such environments support multiple
+graphics devices. If argument \code{image}
+is a gray matrix, then other arguments
+passed to \code{\link{imageTogray}} will be
+ignored.}
 \value{list of data frames with ring widths and ring
 borders such as these produced by
 \code{\link{ringWidths}}, and \code{\link{ringBorders}}).}

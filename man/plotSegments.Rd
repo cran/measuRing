@@ -23,13 +23,16 @@ borders. The markers are highlighted with
 the color in \code{col.marker}. If NULL no
 markers are highlighted.}
   \item{col.marker}{color of the markers.}
-  \item{tit}{logical or character. A title for the plots. If
-TRUE the main title is the image name. For more
-than 1 segment the main title ends with the
-segment number.}
+  \item{tit}{logical or character. A title for the
+plots. If TRUE the main title is the image
+name. For more than 1 segment the main title
+ends with the segment number.}
   \item{plot}{logical. If TRUE the image segments are
 plotted.}
-  \item{\dots}{arguments to be passed to \code{\link{dataSegments}}.}
+  \item{\dots}{arguments to be passed to four functions:
+\code{\link{dataSegments}}, \code{\link{ringWidths}},
+\code{\link{ringBorders}}, and/or
+\code{\link{imageTogray}}.}
 }
 
 \value{the image segments and a list such as that produced by

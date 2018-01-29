@@ -9,7 +9,9 @@ ringWidths <- structure(
                        ##NULL then the rings are numbered from one
                        ##(right) to the number of detected rings
                        ##(left).
-        ...##<< arguments to be passed to \code{\link{ringBorders}}.
+        ...##<< arguments to be passed to two functions:
+           ##\code{\link{ringBorders}}, and/or
+           ##\code{\link{imageTogray}}.
     )
     {
 

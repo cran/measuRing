@@ -1,3 +1,8 @@
+Changes in measuRing V0.4.2
+
+1. Internal algorithm in 'multiDetect' was changed. Arguments of this
+function were simplified, see package documentation.
+
 Changes in measuRing V0.4.1
 
 1. Warnings and errors in the examples of three functions:
