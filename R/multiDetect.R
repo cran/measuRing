@@ -1,31 +1,25 @@
-multiDetect <- structure(function# Recursive detection
-### This function can recursively measure tree-ring widths in one or
-### several image sections.
-                         ##details<<The function can implement most of
-                         ##the in-package routines for ring-border
-                         ##detection, see arguments in
-                         ##\code{\link{ringDetect}} and
-                         ##\code{\link{ringSelect}}. Objects of type
-                         ##\code{multiDetect} can be updated with new
-                         ##argumenst, see examples.
+multiDetect <- structure(function# Multiple detection of TRWs
+### This function recursively detects TRWs in sets of scanned images
+### of wood or gray matrices.
 (
-    img.nm,##<<Character or matrix. Vector of paths to the image
-           ##sections or list of gray matrices.
+    image,##<< \code{character} or \code{list}. Vector of Paths to the
+          ##image files or set of gray matrices.
     ... ##<<Further arguments to be passed to \code{\link{ringDetect}}
         ##and \code{\link{ringSelect}}.
 ) {
     
-    umplmp <- function(img.nm,
+    umplmp <- function(image,
                        ...){
         furt <- list(...)
-        img.nm. <-  gsub('\\..*','',img.nm)
+        image. <- basename(image)
+        image. <-  gsub('\\..*','',image.)
         min <- 'Including'
         mex <- 'Excluding'
         lor <- 'ring borders in'
         autoGen <- do.call(
             ringDetect,
-            list(img.nm,
-                 tit=paste(min, lor, img.nm.,'...'),...))
+            list(image,
+                 tit=paste(min, lor, image.,'...'),...))
         if(!'plot'%in%names(furt) || furt[['plot']])
         {
             incGen <- ringSelect(autoGen)
@@ -35,7 +29,7 @@ multiDetect <- structure(function# Recursive detection
             autoGen <- update(
                 autoGen,
                 inclu = incGen,
-                tit=paste(mex, lor, img.nm.,'...'))
+                tit=paste(mex, lor, image.,'...'))
             excGen <- ringSelect(autoGen,
                                  any.col = FALSE)
             if('exclu'%in%names(furt))
@@ -49,11 +43,11 @@ multiDetect <- structure(function# Recursive detection
     mapping <- Map(function(x,
                             ...)
         umplmp(x,
-               ...),img.nm,
+               ...),image,
         ...)
     mapping <- c(mapping, call = sys.call()) 
     return(mapping)
-###list of \code{\link{ringDetect}} objects.
+###\code{list}. Set of \code{\link{ringDetect}} calls.
 }
 , ex=function(){
     ## Paths to three image sections in the package:
@@ -62,18 +56,18 @@ multiDetect <- structure(function# Recursive detection
                          "P105_d.tif"),
                        package="measuRing")
 
-    ## Recursive detection (arbitrary ring borders and formation years
-    ## are included):
+    ## Recursive detection. Arbitrary ring borders and different years
+    ## of formation of last rings in the images years are specified:
     mrings <- multiDetect(img,
-                          inclu = list(c(1:40),c(1:30),c(1:41),c(1:32)),
-                          last.yr = list(2014, 2013, 2012, 2011),
-                          auto.det = c(FALSE,TRUE,FALSE,TRUE),
+                          inclu = list(c(1:40),c(1:30),c(1:41)),
+                          last.yr = list(2014, 2013, 2012),
+                          auto.det = c(FALSE,TRUE,FALSE),
                           plot = FALSE)
     str(mrings)
 
-    ## Updating the mrings object with new arguments: 
+    ## Updating the call in mrings using new arguments: 
     mrings1 <- update(mrings,
-                      exclu = list(c(1:4),c(1:4),c(1:4),c(1:4)),
+                      exclu = list(c(1:4),c(1:4),c(1:4)),
                       last.yr = 2016)
 
 })

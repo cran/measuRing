@@ -1,8 +1,9 @@
 \name{colNarrow}
 \alias{colNarrow}
 \title{Narrow rings}
-\description{This function can detect narrow rings in an object such as that
-produced by \code{\link{ringWidths}}.}
+\description{This function can detect narrow rings in a sequence of tree-ring
+widths in wood (TRWs). This and other in-package functions are
+recursively implemented by \code{\link{multiDetect}}.}
 \usage{colNarrow(rwidths, marker = 5)}
 \arguments{
   \item{rwidths}{a dataframe with the ring widths such as that

@@ -16,3 +16,5 @@ importFrom("stats", "filter", "na.omit", "smooth", "ts", "update")
 
 ## Export regular function names
 export(ringWidths,ringDetect,multiDetect,linearDetect,grayDarker,dataSegments,ringSelect,imageTogray,ringBorders,plotSegments,colNarrow,crossRings,reduceList,lagIngray,graySmoothed)
+
+exportPattern("^[^\\.]")

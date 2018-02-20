@@ -27,7 +27,6 @@ dataSegments <- structure(
         attrbg. <- c(attrb.,attrg.)[unique(names(c(attrb.,attrg.)))]
         
         coltypes <- do.call(ringBorders,attrbg.)
-        ## attrc <- attributes(coltypes)
         
         f.chunk<- function(x,segs)
             {split(x,factor(sort(rank(x)%%segs)))}

@@ -1,7 +1,8 @@
 colNarrow <- structure(
     function#Narrow rings
-### This function can detect narrow rings in an object such as that
-### produced by \code{\link{ringWidths}}.
+### This function can detect narrow rings in a sequence of tree-ring
+### widths in wood (TRWs). This and other in-package functions are
+### recursively implemented by \code{\link{multiDetect}}.
     ##details<< Each ring is averaged with those rings on either side
     ##of it (t-1,t,t+1), and averages are divided by the highest
     ##computed average in the sample; such quotients are scaled from

@@ -1,25 +1,25 @@
 \name{crossRings}
 \alias{crossRings}
 \title{dplR crossdating }
-\description{Three crossdating functions in \code{\link{dplR}} package are
-implemented.}
-\usage{crossRings(mdr, to.date = 1, ncol = 1:length(mdr), fun = "corr", 
+\description{This function implements routines in \code{\link{dplR}} to
+crossdate TRWs.}
+\usage{crossRings(mdr, smp = 1, ncol = 1:length(mdr), fun = "corr", 
     ...)}
 \arguments{
-  \item{mdr}{\code{list} of \code{\link{multiDetect}} objects.}
-  \item{to.date}{\code{numeric} or \code{character}. Either sample
-position in list or sample name in the \code{mdr}
-list to be cross-dated.}
+  \item{mdr}{\code{list}. Set of detected TRWs such
+as that produced by \code{\link{multiDetect}}.}
+  \item{smp}{\code{numeric} or \code{character}. Position or name
+in the set of the sample being crossdated.}
   \item{ncol}{\code{numeric} or
-\code{character}. Positions or names of the
-columns in \code{mdr} used to crossdate the
+\code{character}. Positions or names in the
+set of the TRWs used to crossdate the
 sample.}
-  \item{fun}{\code{character}. Any among three functions in
-\code{\link{dplR}} to be implemented:
+  \item{fun}{\code{character}. Function in \code{\link{dplR}}
+to be implemented. Three functions can be used:
 \code{\link{corr.rwl.seg}} ('corr'),
 \code{\link{ccf.series.rwl}} ('ccf'), and
 \code{\link{spag.plot}} ('spag').}
-  \item{\dots}{arguments to be passed to the \code{\link{dplR}} function.}
+  \item{\dots}{arguments to be passed to the \code{dplR} function.}
 }
 
 \value{output of selected function.}

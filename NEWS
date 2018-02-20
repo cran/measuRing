@@ -1,3 +1,12 @@
+Changes in measuRing V0.5
+
+1. The package version and the package citation are printed after
+loading the package.
+
+2. Changes in 'ringDetect', 'ringSelect' and 'multiDetect':
+Descriptions of the functions were changed to better explain their
+implementation, see the package documentation.
+
 Changes in measuRing V0.4.2
 
 1. Internal algorithm in 'multiDetect' was changed. Arguments of this

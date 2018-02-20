@@ -3,8 +3,8 @@ plotSegments <- structure(
 ###One or several plots of consecutive segments of gray matrix and
 ###smoothed grays.
     (
-         image,##<<character or matrix. Either path of an image
-               ##section or an array representing a gray matrix.
+        image,##<<character or matrix. Either path of an image section
+              ##or an array representing a gray matrix.
         ratio = NULL,##<<NULL or vector with two values representing
                      ##the aspect of the plots (height, and width). If
                      ##NULL the default aspect in \code{par()} is
@@ -212,7 +212,7 @@ plotSegments <- structure(
             par(mfg=c(2,1));f.image(pixtypes,'','')
             
             par(oma=c(1.5,1,0,0))
-            libname <- 'measuRing V0.3; Printing time:'
+            libname <- 'R-package measuRing; Printing time:'
             mtext(paste(libname,
               " ",format(Sys.time(), "%Y-%m-%d %H:%M")),
                cex=0.5, line=0, side=SOUTH<-1,
