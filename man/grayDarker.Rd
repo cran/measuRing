@@ -1,13 +1,14 @@
 \name{grayDarker}
 \alias{grayDarker}
 \title{Gray extremes}
-\description{This function can detect the extremes of the smoothed gray.}
-\usage{grayDarker(smoothed, origin = 0, darker = TRUE)}
+\description{This function can detect the extremes of the \code{smoothed} gray.}
+\usage{grayDarker(smoothed, 
+    origin = 0, darker = TRUE)}
 \arguments{
-  \item{smoothed}{a data frame with the smoothed gray such
+  \item{smoothed}{a data frame with the \code{smoothed} gray such
 as that produced by
 \code{\link{graySmoothed}}.}
-  \item{origin}{an origin to find the extremes.}
+  \item{origin}{an \code{origin} to find the extremes.}
   \item{darker}{logical. If TRUE the function finds the
 negative extremes. If FALSE the possitive
 extremes are detected.}
@@ -17,7 +18,7 @@ extremes are detected.}
 the extremes (see \code{\link{graySmoothed}} and
 \code{\link{linearDetect}}).}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

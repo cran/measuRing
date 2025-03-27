@@ -1,16 +1,15 @@
-citHeader("To cite package 'measuRing' in publications use:")
-
-citEntry(entry = "Article",
+bibentry(bibtype      = 'Article',
          title        = "{measuRing}: An {R} Package to measure tree-ring widths from scanned images",
-         author       = personList(as.person("W. Lara"), as.person("F. Bravo"), as.person("C.A Sierra")),
+         author       = c(as.person("W. Lara [aut]"), as.person("F. Bravo [aut]"), as.person("C. Sierra [aut]")),
          journal      = "Dendrochronologia",
          year         = "2015",
          volume       = "34",
-         pages        = "43--50",
+         pages        = "43-50",
          doi          = "10.1016/j.dendro.2015.04.002", 
          textVersion  =
              paste("Lara W., Felipe B., and C.A. Sierra  (2015).",
                    "measuRing: An R Package Package to measure tree-ring widths from scanned images",
                    "Dendrochronologia, 34, 43-50.",
-                   "doi: http://dx.doi.org/10.1016/j.dendro.2015.04.002")
-         )
+                   "doi: http://dx.doi.org/10.1016/j.dendro.2015.04.002"),
+header = "To cite package 'measuRing' in publications, please use:")
+

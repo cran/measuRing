@@ -1,10 +1,10 @@
 \name{crossRings}
 \alias{crossRings}
 \title{dplR crossdating }
-\description{This function implements routines in \code{\link{dplR}} to
-crossdate TRWs.}
-\usage{crossRings(mdr, smp = 1, ncol = 1:length(mdr), fun = "corr", 
-    ...)}
+\description{This function implements routines to crossdate TRWs.}
+\usage{crossRings(mdr, smp = 1, 
+    ncol = 1:length(mdr), 
+    fun = "corr", ...)}
 \arguments{
   \item{mdr}{\code{list}. Set of detected TRWs such
 as that produced by \code{\link{multiDetect}}.}
@@ -14,17 +14,17 @@ in the set of the sample being crossdated.}
 \code{character}. Positions or names in the
 set of the TRWs used to crossdate the
 sample.}
-  \item{fun}{\code{character}. Function in \code{\link{dplR}}
+  \item{fun}{\code{character}. Function
 to be implemented. Three functions can be used:
-\code{\link{corr.rwl.seg}} ('corr'),
-\code{\link{ccf.series.rwl}} ('ccf'), and
-\code{\link{spag.plot}} ('spag').}
-  \item{\dots}{arguments to be passed to the \code{dplR} function.}
+\code{\link[dplR]{corr.rwl.seg}} ('corr'),
+\code{\link[dplR]{ccf.series.rwl}} ('ccf'), and
+\code{\link[dplR]{spag.plot}} ('spag').}
+  \item{\dots}{arguments to be passed to the function.}
 }
 
 \value{output of selected function.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

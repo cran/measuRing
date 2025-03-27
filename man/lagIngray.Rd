@@ -2,22 +2,23 @@
 \alias{lagIngray}
 \title{First-local lag}
 \description{This function can compute the lag of the first local on the
-auto-correlation function (acf) of smoothed grays.}
-\usage{lagIngray(image, acf = FALSE, ...)}
+auto-correlation function (\code{acf}) of smoothed grays.}
+\usage{lagIngray(image, acf = FALSE, 
+    ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
+  \item{image}{character or matrix. Either path of an \code{image} section
 or an array representing a gray matrix.}
   \item{acf}{logical. If TRUE the output is extended with the
-acf.}
+\code{acf}.}
   \item{\dots}{arguments to be passed to \code{\link{imageTogray}}.}
 }
 
-\value{constant value of the first local on the acf of the
-smoothed gray. If acf is TRUE then the computed acf is
+\value{constant value of the first local on the \code{acf} of the
+smoothed gray. If \code{acf} is TRUE then the computed \code{acf} is
 added to the output (see \code{\link{linearDetect}}, and
 \code{\link{graySmoothed}}).}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

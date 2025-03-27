@@ -6,14 +6,14 @@ of wood or gray matrices.}
 \usage{multiDetect(image, ...)}
 \arguments{
   \item{image}{\code{character} or \code{list}. Vector of Paths to the
-image files or set of gray matrices.}
+\code{image} files or set of gray matrices.}
   \item{\dots}{Further arguments to be passed to \code{\link{ringDetect}}
 and \code{\link{ringSelect}}.}
 }
 
 \value{\code{list}. Set of \code{\link{ringDetect}} calls.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

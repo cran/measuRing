@@ -2,10 +2,12 @@
 \alias{ringBorders}
 \title{Ring borders}
 \description{This function can find the ring borders in a gray matrix.}
-\usage{ringBorders(image, auto.det = TRUE, darker = TRUE, origin = 0, 
-    inclu = NULL, exclu = NULL, ...)}
+\usage{ringBorders(image, auto.det = TRUE, 
+    darker = TRUE, origin = 0, 
+    inclu = NULL, exclu = NULL, 
+    ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
+  \item{image}{character or matrix. Either path of an \code{image} section
 or an array ##representing a gray matrix.}
   \item{auto.det}{logical. If TRUE the linear detection is
 implemented (see
@@ -14,7 +16,7 @@ implemented (see
 negative extremes on smoothed grays to
 detect the ring borders. If FALSE the
 possitive extremes are used.}
-  \item{origin}{numeric. an origin in smoothed gray to
+  \item{origin}{numeric. an \code{origin} in smoothed gray to
 find the ring borders.}
   \item{inclu}{NULL or vector with column numbers in gray
 matrix, other than those automatically
@@ -29,7 +31,7 @@ ring borders (see \code{\link{grayDarker}},
 \code{\link{graySmoothed}}, and
 \code{\link{linearDetect}}).}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

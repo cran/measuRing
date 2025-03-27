@@ -3,11 +3,12 @@
 \title{Data segments}
 \description{Segmented data sets required by function
 \code{\link{plotSegments}}.}
-\usage{dataSegments(image, segs = 1, ...)}
+\usage{dataSegments(image, segs = 1, 
+    ...)}
 \arguments{
-  \item{image}{Either path of an image section or an array
+  \item{image}{Either path of an \code{image} section or an array
 representing a gray matrix.}
-  \item{segs}{number of image segments.}
+  \item{segs}{number of \code{image} segments.}
   \item{\dots}{arguments to be passed to three functions:
 \code{\link{ringWidths}}, \code{\link{ringBorders}},
 and/or \code{\link{imageTogray}}.}
@@ -17,7 +18,7 @@ and/or \code{\link{imageTogray}}.}
 borders, and the ring widths (see
 \code{\link{plotSegments}}).}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

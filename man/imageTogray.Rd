@@ -2,13 +2,15 @@
 \alias{imageTogray}
 \title{Gray matrix}
 \description{This function can compute a gray matrix from the RGB in an
-image section. Such an image section can be compressed in
-either portable network graphics format (png) or tagged image
+\code{image} section. Such an \code{image} section can be compressed in
+either portable network graphics format (png) or tagged \code{image}
 file format (tif).    }
-\usage{imageTogray(image, ppi = NULL, rgb = c(0.3, 0.6, 0.1), p.row = 1)}
+\usage{imageTogray(image, ppi = NULL, 
+    rgb = c(0.3, 0.6, 
+        0.1), p.row = 1)}
 \arguments{
-  \item{image}{character. path of an image section.}
-  \item{ppi}{NULL or integer. If NULL the image resolution
+  \item{image}{character. path of an \code{image} section.}
+  \item{ppi}{NULL or integer. If NULL the \code{image} resolution
 in points per inch is extracted from attributes
 in \code{image}. If this attribute is not
 embedded then users should provide it}
@@ -19,9 +21,9 @@ matrix.}
 processed.}
 }
 
-\value{a gray matrix containing the image reflectances.}
+\value{a gray matrix containing the \code{image} reflectances.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

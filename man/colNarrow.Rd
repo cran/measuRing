@@ -20,7 +20,7 @@ computed average in the sample; such quotients are scaled from
 to the narrow rings (see \code{\link{ringDetect}},
 \code{\link{multiDetect}}, and\code{\link{plotSegments}}).}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

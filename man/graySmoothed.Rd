@@ -2,9 +2,10 @@
 \alias{graySmoothed}
 \title{Smoothed gray}
 \description{Averaging, detrending, and smoothing of the columns in a gray matrix. }
-\usage{graySmoothed(image, all = FALSE, ...)}
+\usage{graySmoothed(image, all = FALSE, 
+    ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
+  \item{image}{character or matrix. Either path of an \code{image} section
 or an array representing a gray matrix.}
   \item{all}{logical. If TRUE the column numbers and
 moving averages are added to the output.}
@@ -15,7 +16,7 @@ moving averages are added to the output.}
 TRUE then the output is extended with the columns in
 gray matrix, and moving averages.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

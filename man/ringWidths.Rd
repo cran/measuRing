@@ -2,10 +2,11 @@
 \alias{ringWidths}
 \title{Ring widths }
 \description{This function can compute the ring widths (mm) from the ring
-borders detected on an image section.}
-\usage{ringWidths(image, last.yr = NULL, ...)}
+borders detected on an \code{image} section.}
+\usage{ringWidths(image, last.yr = NULL, 
+    ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
+  \item{image}{character or matrix. Either path of an \code{image} section
 or an array representing a gray matrix.}
   \item{last.yr}{year of formation of the newest ring. If
 NULL then the rings are numbered from one
@@ -18,7 +19,7 @@ NULL then the rings are numbered from one
 
 \value{data frame with the ring widths.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

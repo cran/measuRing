@@ -3,10 +3,12 @@
 \title{Image segments}
 \description{One or several plots of consecutive segments of gray matrix and
 smoothed grays.}
-\usage{plotSegments(image, ratio = NULL, marker = NULL, col.marker = "red", 
-    tit = TRUE, plot = TRUE, ...)}
+\usage{plotSegments(image, ratio = NULL, 
+    marker = NULL, col.marker = "red", 
+    tit = TRUE, plot = TRUE, 
+    ...)}
 \arguments{
-  \item{image}{character or matrix. Either path of an image section
+  \item{image}{character or matrix. Either path of an \code{image} section
 or an array representing a gray matrix.}
   \item{ratio}{NULL or vector with two values representing
 the aspect of the plots (height, and width). If
@@ -24,10 +26,10 @@ the color in \code{col.marker}. If NULL no
 markers are highlighted.}
   \item{col.marker}{color of the markers.}
   \item{tit}{logical or character. A title for the
-plots. If TRUE the main title is the image
+plots. If TRUE the main title is the \code{image}
 name. For more than 1 segment the main title
 ends with the segment number.}
-  \item{plot}{logical. If TRUE the image segments are
+  \item{plot}{logical. If TRUE the \code{image} segments are
 plotted.}
   \item{\dots}{arguments to be passed to four functions:
 \code{\link{dataSegments}}, \code{\link{ringWidths}},
@@ -35,10 +37,10 @@ plotted.}
 \code{\link{imageTogray}}.}
 }
 
-\value{the image segments and a list such as that produced by
+\value{the \code{image} segments and a list such as that produced by
 \code{\link{dataSegments}}.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

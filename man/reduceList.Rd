@@ -2,7 +2,8 @@
 \alias{reduceList}
 \title{ring-width object reduction}
 \description{ring-width objects are reduced to dplR chronologies.}
-\usage{reduceList(mls, name.ls = "ringWidths", empty.rm = TRUE)}
+\usage{reduceList(mls, name.ls = "ringWidths", 
+    empty.rm = TRUE)}
 \arguments{
   \item{mls}{\code{List}. Object from \code{\link{multiDetect}}}
   \item{name.ls}{Character. name of the list to be
@@ -12,7 +13,7 @@ reduced.}
 
 \value{data frame  in wide format with the ring widths.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

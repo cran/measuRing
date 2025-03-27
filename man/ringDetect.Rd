@@ -2,7 +2,7 @@
 \alias{ringDetect}
 \title{Single Detection of TRWs}
 \description{This function assists in the detection of TRW (mm) in a scanned
-image (.tif or .png) or gray matrix, evaluating other required
+\code{image} (.tif or .png) or gray matrix, evaluating other required
 functions and plotting the outputs in graphics devices. The
 function can be combined with \code{\link{ringSelect}} to visually
 detected TRWs. Nevertheless, the complete measurement procedure of
@@ -11,7 +11,7 @@ TRW with the package can be performed by \code{\link{multiDetect}}.}
 \arguments{
   \item{image}{\code{character} or
 \code{matrix}. Vector of path to
-the image section or a gray matrix
+the \code{image} section or a gray matrix
 such as that produced by
 \code{\link{imageTogray}}.}
   \item{\dots}{arguments to be passed to other
@@ -20,16 +20,16 @@ functions, see section of Details.}
 \details{The scanned sample should
 correspond to a horizontal window of wood
 with the bark side located towards the left
-area of the image, and the pit side towards
-the right. The image section may not
+area of the \code{image}, and the pit side towards
+the right. The \code{image} section may not
 necessarily contain both bark and pit, see
-images of the Examples. The image should
+images of the Examples. The \code{image} should
 contain Red, Gren, and Blue channels (rgb)
 and be compressed in any of two file
 formats: tif or png. These are easily
 obtained by scanning wood samples with a
 conventional scanner and extracting a
-horizontal image section. Five functions
+horizontal \code{image} section. Five functions
 are internally implemented:
 \code{\link{plotSegments}},
 \code{\link{dataSegments}},
@@ -37,11 +37,11 @@ are internally implemented:
 \code{\link{ringBorders}},
 and/or\code{\link{imageTogray}}. These are
 controlled using the following arguments:
-\itemize{ \item\code{ppi = NULL}: image
+\itemize{ \item\code{ppi = NULL}: \code{image}
 resolution in points per inch. If
 \code{NULL} the \code{ppi} is extracted
-from the image attributes. If the
-\code{ppi} is not embedded in the image,
+from the \code{image} attributes. If the
+\code{ppi} is not embedded in the \code{image},
 then thos argument should be provided;
 \item\code{rgb = c(0.3,0.6,0.1)}: vector of
 three fractions, all of them adding to one,
@@ -85,7 +85,7 @@ the analysis. If \code{NULL}, no ring
 borders are excluded; \item\code{plot =
 TRUE}: \code{logical}. If \code{TRUE} then
 a plot is produced; \item\code{segs = 1}:
-Number of image segments to be plotted;
+Number of \code{image} segments to be plotted;
 \item\code{ratio = NULL}: \code{NULL} or
 \code{numeric} vector of two values
 representing the aspect ratio of the plots
@@ -105,14 +105,14 @@ pinpricks; \item\code{col.marker = 'red'}:
 color of the markers; \item\code{tit =
 TRUE}: \code{logical} or
 \code{character}. A title for the plots. If
-\code{TRUE} the main title is the image
+\code{TRUE} the main title is the \code{image}
 name. For more than 1 segment the main
 title ends with the segment number. This
 argument does not work in
 \code{\link{multiDetect}}.} If
 users run R from Interactive Development
 Environments (IDE) aiming to segment the
-image section (\code{segs > 1}), they
+\code{image} section (\code{segs > 1}), they
 should be sure that such environments
 support multiple graphics devices. If the
 argument \code{image} is a gray matrix,
@@ -137,7 +137,7 @@ Edition. CRC Press, Boca Raton, 817 pp.}}
 borders such as these produced by
 \code{\link{ringWidths}}, and \code{\link{ringBorders}}.}
 
-\author{Wilson Lara, Carlos Sierra, Felipe Bravo}
+\author{Wilson Lara <wilarhen@gmail.com> [aut, cre] (<https://orcid.org/0000-0003-3527-1380>), Carlos Sierra [aut] (<https://orcid.org/0000-0003-0009-4169>), Felipe Bravo [aut] (<https://orcid.org/0000-0001-7348-6695>)}
 
 
 

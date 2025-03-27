@@ -1,12 +1,10 @@
 crossRings <- structure(function#dplR crossdating 
-### This function implements routines in \code{\link{dplR}} to
-### crossdate TRWs.
+### This function implements routines to crossdate TRWs.
                         ##<<This function is a wrapper to implement
-                        ##three crossdating functions in
-                        ##\code{\link{dplR}}:
-                        ##\code{\link{corr.rwl.seg}} ,
-                        ##\code{\link{ccf.series.rwl}}, and
-                        ##\code{\link{spag.plot}}.
+                        ##three crossdating functions:
+                        ##\code{\link[dplR]{corr.rwl.seg}} ,
+                        ##\code{\link[dplR]{ccf.series.rwl}}, and
+                        ##\code{\link[dplR]{spag.plot}}.
 (
     mdr,##<<\code{list}. Set of detected TRWs such
         ##as that produced by \code{\link{multiDetect}}.
@@ -16,12 +14,12 @@ crossRings <- structure(function#dplR crossdating
                          ##\code{character}. Positions or names in the
                          ##set of the TRWs used to crossdate the
                          ##sample.
-    fun = 'corr',##<<\code{character}. Function in \code{\link{dplR}}
+    fun = 'corr',##<<\code{character}. Function
                  ##to be implemented. Three functions can be used:
-                 ##\code{\link{corr.rwl.seg}} ('corr'),
-                 ##\code{\link{ccf.series.rwl}} ('ccf'), and
-                 ##\code{\link{spag.plot}} ('spag').
-    ...##<< arguments to be passed to the \code{dplR} function.
+                 ##\code{\link[dplR]{corr.rwl.seg}} ('corr'),
+                 ##\code{\link[dplR]{ccf.series.rwl}} ('ccf'), and
+                 ##\code{\link[dplR]{spag.plot}} ('spag').
+    ...##<< arguments to be passed to the function.
 ) {
 
     nl <- reduceList(mdr)
