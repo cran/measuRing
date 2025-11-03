@@ -17,6 +17,10 @@ dataSegments <- structure(
         ns <- names(attributes(rwidths))
         nm <- lapply(strsplit(ns,'rbord.'),function(x)x[length(x)])
         names(attrw) <- nm
+
+# do NOT let these leak onto the top-level list:
+attrw <- attrw[setdiff(names(attrw), c("class", "row.names", "names", "dim", "dimnames"))]
+
         attrg. <- attrw[names(formals(imageTogray))]
         attrb1 <- setdiff(names(formals(ringBorders)),'...')
 
@@ -33,6 +37,7 @@ dataSegments <- structure(
         f.rown <- function(x)as.numeric(rownames(x))
         pixels. <- f.chunk(f.rown(coltypes),segs)
         minl <- min(unlist(lapply(pixels.,length)))
+
         f.split <- function(x,y){
          l <- list();for(i in 1:length(y))
          l[[i]] <- subset(x,f.rown(x)%in%y[[i]])
@@ -46,7 +51,9 @@ dataSegments <- structure(
         splitd <- list(gray.,coltypes.,rwidths.)
         attributes(splitd) <- c(attributes(splitd),attrw,segs=segs)
         names(splitd) <- c('imageTogray','ringBorders','ringWidths')
-        return(splitd)
+        ## return(splitd)
+return(invisible(splitd))  # avoid giant console print
+
         ###a list with segmented sets of the gray matrix, the ring
         ###borders, and the ring widths (see
         ###\code{\link{plotSegments}}).

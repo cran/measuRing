@@ -1,3 +1,9 @@
+Changes in measuRing V0.5.2
+
+Prevented unintended coercion of segmented data lists into data frames
+in dataSegments(). Reserved attribute names (class, row.names, etc.)
+are now excluded to ensure consistent list output.
+
 Changes in measuRing V0.5.1
 
 1. Provided package anchors for all Rd \link{} targets not in the
